@@ -25,7 +25,8 @@
       </ul>
 
       <p basicHighlight>Style me with basic highlight directive</p>
-      <p appBetterHighlight>Style me with better highlight directive</p>
+      <p [betterHighlight]="'red'" defaultColor="yellow">Style me with better highlight directive</p> 
+      <!-- ^^ for defining in html, just put betterHighlight to grab from typescript file -->
     </div>
   </div>
 </div>
