@@ -1,32 +1,42 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <button
-        class="btn btn-primary"
-        (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
-      <br><br>
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+      <br>
+      <br>
       <ul class="list-group">
         <div *ngIf="onlyOdd">
-          <li class="list-group-item" 
-          *ngFor="let odd of oddNumbers" 
-          [ngClass]="{ 'odd': odd % 2 !== 0 }"
-          [ngStyle]="{  'background-color': (odd % 2 !==0) ? 'yellow' : 'transparent' }">
+          <li class="list-group-item" *ngFor="let odd of oddNumbers" [ngClass]="{ 'odd': odd % 2 !== 0 }" [ngStyle]="{  'background-color': (odd % 2 !==0) ? 'yellow' : 'transparent' }">
             {{ odd }}
           </li>
         </div>
-        <div *ngIf="!onlyOdd">
+        <!-- <div *ngIf="!onlyOdd">
             <li class="list-group-item" 
             *ngFor="let even of evenNumbers"
             [ngClass]="{ 'odd': even % 2 !== 0 }"
             [ngStyle]="{  'background-color': (even % 2 !==0) ? 'yellow' : 'transparent' }">
               {{ even }}
             </li>
+          </div> -->
+
+<!-- Another way of doing what we are doing above. This time with *ngIf -->
+        <ng-template [ngIf]="!onlyOdd"> <!-- property binding way to do ngIf -->
+
+          <div>
+            <li class="list-group-item" 
+            *ngFor="let even of evenNumbers" 
+            [ngClass]="{ 'odd': even % 2 !== 0 }" 
+            [ngStyle]="{  'background-color': (even % 2 !==0) ? 'yellow' : 'transparent' }">
+              {{ even }}
+            </li>
           </div>
+        </ng-template>
       </ul>
 
       <p basicHighlight>Style me with basic highlight directive</p>
-      <p [betterHighlight]="'red'" defaultColor="yellow">Style me with better highlight directive</p> 
+      <p [betterHighlight]="'red'" defaultColor="yellow">Style me with better highlight directive</p>
       <!-- ^^ for defining in html, just put betterHighlight to grab from typescript file -->
     </div>
   </div>
 </div>
+
